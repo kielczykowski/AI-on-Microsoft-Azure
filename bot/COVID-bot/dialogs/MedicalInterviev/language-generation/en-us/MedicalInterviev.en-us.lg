@@ -1,0 +1,21 @@
+[import](common.lg)
+
+# TextInput_Prompt_70CzcE()
+- What's the matter?
+
+# TextInput_Prompt_5cCGxN()
+[Activity   
+    Text = I find that You are not ceratin about pandemics. I would recommend You asking me some questions to make everything clear ok?
+    SuggestedActions = Yes  | Please go to the beginning | EXIT
+    ]
+
+
+
+
+# TextInput_Prompt_vHwAx1()
+[Activity   
+    Text = Do You want to end our conversation? If no we will start from the beginning 
+    SuggestedActions = I wanna ask some questions  | I want to get help
+    ]
+# SendActivity_LTrs9M()
+- Sadly i didn't recognize what u meant. We will start from the beginning.

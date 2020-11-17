@@ -1,0 +1,8 @@
+[import](common.lg)
+
+# SendActivity_Welcome()
+-Good morning, welcome to covid bot. We will try to answer your doubts and guide you in your next actions. You can exit our interaction just by typing 'EXIT' phrase.
+
+
+# SendActivity_BAggOp()
+- dfgdf

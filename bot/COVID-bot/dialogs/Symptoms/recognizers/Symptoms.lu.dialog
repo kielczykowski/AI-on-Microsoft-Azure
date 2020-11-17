@@ -1,0 +1,8 @@
+{
+  "$kind": "Microsoft.MultiLanguageRecognizer",
+  "id": "LUIS_Symptoms",
+  "recognizers": {
+    "en-us": "Symptoms.en-us.lu",
+    "": "Symptoms.en-us.lu"
+  }
+}

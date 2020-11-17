@@ -1,0 +1,18 @@
+
+> Source: cross training. Please do not edit these directly!
+> !# @qna.pair.source = crosstrained
+
+# ? From yesterday i just feel constantly tired.
+- Every move causes me pain
+- I feel worn off
+- It's hard to explain but I am in strage mood.
+- Exit
+- exit
+- EXIT
+
+**Filters:**
+- dialogName=HealthResearch
+
+```
+intent=DeferToRecognizer_LUIS_HealthResearch
+```

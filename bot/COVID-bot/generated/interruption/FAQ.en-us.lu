@@ -1,0 +1,38 @@
+
+> LUIS application information
+> !# @app.versionId = 0.1
+> !# @app.culture = en-us
+> !# @app.luis_schema_version = 3.2.0
+
+
+> # Intent definitions
+
+# Exit
+- Exit
+- exit
+- EXIT
+
+
+> # Entity definitions
+
+
+> # PREBUILT Entity definitions
+
+
+> # Phrase list definitions
+
+
+> # List entities
+
+> # RegEx entities
+
+
+
+
+> Source: cross training. Please do not edit these directly!
+# DeferToRecognizer_QnA_FAQ
+- What if i can't catch air?
+- What to do in case of breathlessness and breathing difficulties?
+- How does it feel to be infected with covid?
+- What are most common symptopms of coronavirus infection
+- What symptoms are characteristic of the coronavirus?

@@ -1,0 +1,24 @@
+{
+    "luis": {
+        "HealthResearch_en_us_lu": {
+            "appId": "e823124d-1273-44bb-baf6-086ff0825f2d",
+            "version": "2.7"
+        },
+        "FAQ_en_us_lu": {
+            "appId": "3fabd26b-dcad-45b0-ac3a-69c599f54d9b",
+            "version": "2.7"
+        },
+        "Symptoms_en_us_lu": {
+            "appId": "ab7d0e0a-cf78-4a46-9e52-7e676b32b9e0",
+            "version": "2.7"
+        },
+        "InfectedPersonContact_en_us_lu": {
+            "appId": "66e59ad6-0725-4b36-97dd-2c895f93fe1f",
+            "version": "2.6"
+        },
+        "MedicalInterviev_en_us_lu": {
+            "appId": "73e44462-0d52-4954-9a77-fdcf097871cc",
+            "version": "4.5"
+        }
+    }
+}

@@ -1,0 +1,18 @@
+[import](common.lg)
+
+# SendActivity_JycHSp()
+- Most probably it's just a cold or minor health issues. Don't bother Yourself, but please stay healthy!
+# SendActivity_xGzaTa()
+-  It would be best for You to keep isolated. If it gets anything worse call emergency services right away. For now keep isolated, drink much water and sleep well. 
+# SendActivity_qQYdEz()
+- Please contact with emergency services now. It is highly advised for You to go under quarantine, but please contact with healthcare services.  Call the COVID-19 Contact Center. The helpline is open 24/7 22 25 00 115.
+# TextInput_Prompt_GTh8gm()
+[Activity   
+    Text = Hope that conversation helped You. In the end would You like to ask some questions about COVID?
+    SuggestedActions = Yes  | No
+    ]
+
+
+
+# SendActivity_TUgM0A()
+- Most probably it's just a cold or minor health issues. Don't bother Yourself, but please stay healthy!

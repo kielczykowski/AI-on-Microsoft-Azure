@@ -1,0 +1,9 @@
+[import](common.lg)
+
+# TextInput_Prompt_W5PFGG()
+[Activity   
+    Text = Do you want to ask another question?
+    SuggestedActions = Yes  | No
+    ]
+# TextInput_Prompt_TEXHTG()
+- I will answer Your questions. Don't hesitate to ask :)

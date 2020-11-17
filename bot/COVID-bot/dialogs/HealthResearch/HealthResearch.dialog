@@ -1,0 +1,101 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "bjIB5f",
+    "name": "HealthResearch",
+    "description": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "tBWWrL"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "zltmyy"
+          },
+          "activity": "${SendActivity_zltmyy()}"
+        },
+        {
+          "$kind": "Microsoft.TextInput",
+          "$designer": {
+            "id": "J4jzYl"
+          },
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": true,
+          "allowInterruptions": true,
+          "prompt": "${TextInput_Prompt_J4jzYl()}",
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "property": "user.mood"
+        },
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "JevNlw"
+          },
+          "activityProcessed": true,
+          "dialog": "Symptoms"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "AEZMZb",
+        "name": "Mood"
+      },
+      "intent": "Mood",
+      "actions": [
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "ScGM0w"
+          },
+          "property": "user.symptoms_counter",
+          "value": "= user.symptoms_counter +1"
+        },
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "V2vZxF"
+          },
+          "activityProcessed": true,
+          "dialog": "Symptoms"
+        }
+      ],
+      "condition": "#Mood.Score > 0.7"
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "Q0XIsL",
+        "name": "Exit"
+      },
+      "intent": "Exit",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "1KBiHj"
+          },
+          "activityProcessed": true,
+          "dialog": "Goodbye"
+        }
+      ],
+      "condition": "#Exit.Score > 0.75"
+    }
+  ],
+  "generator": "HealthResearch.lg",
+  "recognizer": "HealthResearch.lu.qna",
+  "id": "HealthResearch"
+}

@@ -1,0 +1,8 @@
+{
+  "$kind": "Microsoft.MultiLanguageRecognizer",
+  "id": "LUIS_MedicalInterviev",
+  "recognizers": {
+    "en-us": "MedicalInterviev.en-us.lu",
+    "": "MedicalInterviev.en-us.lu"
+  }
+}

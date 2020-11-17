@@ -1,0 +1,8 @@
+# WelcomeUser
+- Welcome to the EmptyBot sample
+
+# list(collection)
+- IF : ${collection != null}
+    -${join(foreach(collection, item, concat('- ', item)), '\n')}
+- ELSE :
+    - You do not have any items in your list.

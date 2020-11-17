@@ -1,0 +1,19 @@
+
+> Source: cross training. Please do not edit these directly!
+> !# @qna.pair.source = crosstrained
+
+# ? I'm cold, have dry cough and fever
+- I have breath shortness
+- i have high fever and breath shortness
+- I can not breath
+- I have trouble breathing
+- Exit
+- exit
+- EXIT
+
+**Filters:**
+- dialogName=Symptoms
+
+```
+intent=DeferToRecognizer_LUIS_Symptoms
+```

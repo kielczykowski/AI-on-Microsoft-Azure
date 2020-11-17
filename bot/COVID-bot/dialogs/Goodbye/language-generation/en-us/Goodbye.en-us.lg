@@ -1,0 +1,17 @@
+[import](common.lg)
+
+# SendActivity_PaVvoS()
+- Thank You for Your time. I hope I could answer all Your questions. Have great time and maintain healthy life!
+# TextInput_Prompt_EcjGv4()
+[Activity   
+    Text = Last but not least please let me know if You feel satisfied with my advises. If You are not, feel free to chose 'No' box. It will make one of our employees contact with You. We will provide him all the information You have provided us during this conversation. 
+    SuggestedActions = Yes  | No
+    ]
+# SendActivity_L18cmZ()
+- Asked questions:\n${join(foreach(user.lists.questions, item, concat('- ', item)), '\n')}
+
+
+# SendActivity_8vamnw()
+- All following data will be passed to our staff.
+# SendActivity_cQskJX()
+- Had contact with someone infected:${user.metInfected}

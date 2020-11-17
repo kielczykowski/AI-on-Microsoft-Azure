@@ -1,0 +1,94 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "rPSO5L",
+    "name": "Symptoms",
+    "description": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "weOjDa"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.TextInput",
+          "$designer": {
+            "id": "pL3xdH"
+          },
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": true,
+          "allowInterruptions": true,
+          "prompt": "${TextInput_Prompt_pL3xdH()}",
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "property": "user.symptoms"
+        },
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "yu1iwN"
+          },
+          "activityProcessed": true,
+          "dialog": "InfectedPersonContact"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "btscH5",
+        "name": "Symptoms"
+      },
+      "intent": "Symptoms",
+      "actions": [
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "NeImen"
+          },
+          "property": "user.symptoms_counter",
+          "value": "= user.symptoms_counter +1"
+        },
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "qxQjUQ"
+          },
+          "activityProcessed": true,
+          "dialog": "InfectedPersonContact"
+        }
+      ],
+      "condition": "#Symptoms.Score > 0.75"
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "wNYP53",
+        "name": "Exit"
+      },
+      "intent": "Exit",
+      "condition": "#Exit.Score > 0.75",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "UbEOOZ"
+          },
+          "activityProcessed": true,
+          "dialog": "Goodbye"
+        }
+      ]
+    }
+  ],
+  "generator": "Symptoms.lg",
+  "recognizer": "Symptoms.lu.qna",
+  "id": "Symptoms"
+}

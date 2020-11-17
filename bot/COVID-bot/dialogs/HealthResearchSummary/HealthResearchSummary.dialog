@@ -1,0 +1,142 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "tWtjZk",
+    "name": "HealthResearchSummary",
+    "description": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "UWIHpn"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "nrbWbK"
+          },
+          "property": "user.askedQuestions",
+          "value": true
+        },
+        {
+          "$kind": "Microsoft.SwitchCondition",
+          "$designer": {
+            "id": "SDghR0"
+          },
+          "condition": "user.symptoms_counter",
+          "cases": [
+            {
+              "actions": [
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "JycHSp"
+                  },
+                  "activity": "${SendActivity_JycHSp()}"
+                }
+              ],
+              "value": 1
+            },
+            {
+              "value": "2",
+              "actions": [
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "xGzaTa"
+                  },
+                  "activity": "${SendActivity_xGzaTa()}"
+                }
+              ]
+            },
+            {
+              "value": "3",
+              "actions": [
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "qQYdEz"
+                  },
+                  "activity": "${SendActivity_qQYdEz()}"
+                },
+                {
+                  "$kind": "Microsoft.BeginDialog",
+                  "$designer": {
+                    "id": "jPfscQ"
+                  },
+                  "activityProcessed": true,
+                  "dialog": "Goodbye"
+                },
+                {
+                  "$kind": "Microsoft.EndDialog",
+                  "$designer": {
+                    "id": "vMTSej"
+                  }
+                }
+              ]
+            }
+          ],
+          "default": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "TUgM0A"
+              },
+              "activity": "${SendActivity_TUgM0A()}"
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.TextInput",
+          "$designer": {
+            "id": "GTh8gm"
+          },
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${TextInput_Prompt_GTh8gm()}",
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "property": "$qna"
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "xunUrB"
+          },
+          "condition": "$qna == \"Yes\"",
+          "actions": [
+            {
+              "$kind": "Microsoft.BeginDialog",
+              "$designer": {
+                "id": "g3BcdS"
+              },
+              "activityProcessed": true,
+              "dialog": "FAQ"
+            }
+          ],
+          "elseActions": []
+        },
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "kc2AIF"
+          },
+          "activityProcessed": true,
+          "dialog": "Goodbye"
+        }
+      ]
+    }
+  ],
+  "generator": "HealthResearchSummary.lg",
+  "recognizer": "HealthResearchSummary.lu.qna",
+  "id": "HealthResearchSummary"
+}

@@ -1,0 +1,141 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "AnUWMJ",
+    "name": "Medical-Interview",
+    "description": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "1026eS"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.TextInput",
+          "$designer": {
+            "id": "70CzcE"
+          },
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": true,
+          "prompt": "${TextInput_Prompt_70CzcE()}",
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "property": "$interview.initialresponse"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "LTrs9M"
+          },
+          "activity": "${SendActivity_LTrs9M()}"
+        },
+        {
+          "$kind": "Microsoft.EndDialog",
+          "$designer": {
+            "id": "d0r2VR"
+          }
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "jE2VCC",
+        "name": "ConsideringBeingIll"
+      },
+      "intent": "help",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "MISoFN"
+          },
+          "activityProcessed": true,
+          "dialog": "HealthResearch"
+        }
+      ],
+      "condition": "#help.score > 0.8"
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "EC80FZ",
+        "name": "PossiblyOverreacting"
+      },
+      "intent": "haha",
+      "actions": [
+        {
+          "$kind": "Microsoft.TextInput",
+          "$designer": {
+            "id": "5cCGxN"
+          },
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": true,
+          "prompt": "${TextInput_Prompt_5cCGxN()}",
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "property": "$questions"
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "CmRr6p"
+          },
+          "condition": "$questions == \"Yes\"",
+          "actions": [
+            {
+              "$kind": "Microsoft.BeginDialog",
+              "$designer": {
+                "id": "PtKDJI"
+              },
+              "activityProcessed": true,
+              "dialog": "FAQ"
+            }
+          ],
+          "elseActions": []
+        },
+        {
+          "$kind": "Microsoft.EndDialog",
+          "$designer": {
+            "id": "cZSutM"
+          }
+        }
+      ],
+      "condition": "#haha.Score > 0.6"
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "tuzbo6",
+        "name": "Exit"
+      },
+      "intent": "Exit",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "TN60Kp"
+          },
+          "activityProcessed": true,
+          "dialog": "Goodbye"
+        }
+      ],
+      "condition": "#Exit.Score > 0.75"
+    }
+  ],
+  "generator": "MedicalInterviev.lg",
+  "recognizer": "MedicalInterviev.lu.qna",
+  "id": "MedicalInterviev"
+}

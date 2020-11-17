@@ -1,0 +1,11 @@
+{
+    "qna": {
+        "FAQ_manual_source_en_us_qna": "817e4149-ca07-42f3-b5b4-08439e3c6835",
+        "hostname": "https://covid-qna-service.azurewebsites.net/qnamaker",
+        "FAQ_en_us_qna": "817e4149-ca07-42f3-b5b4-08439e3c6835",
+        "HealthResearch_en_us_qna": "817e4149-ca07-42f3-b5b4-08439e3c6835",
+        "InfectedPersonContact_en_us_qna": "817e4149-ca07-42f3-b5b4-08439e3c6835",
+        "MedicalInterviev_en_us_qna": "817e4149-ca07-42f3-b5b4-08439e3c6835",
+        "Symptoms_en_us_qna": "817e4149-ca07-42f3-b5b4-08439e3c6835"
+    }
+}

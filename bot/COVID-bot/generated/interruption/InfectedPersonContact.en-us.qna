@@ -1,0 +1,14 @@
+
+> Source: cross training. Please do not edit these directly!
+> !# @qna.pair.source = crosstrained
+
+# ? Exit
+- exit
+- EXIT
+
+**Filters:**
+- dialogName=InfectedPersonContact
+
+```
+intent=DeferToRecognizer_LUIS_InfectedPersonContact
+```

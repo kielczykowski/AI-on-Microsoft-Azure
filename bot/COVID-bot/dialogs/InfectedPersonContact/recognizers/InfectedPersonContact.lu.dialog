@@ -1,0 +1,8 @@
+{
+  "$kind": "Microsoft.MultiLanguageRecognizer",
+  "id": "LUIS_InfectedPersonContact",
+  "recognizers": {
+    "en-us": "InfectedPersonContact.en-us.lu",
+    "": "InfectedPersonContact.en-us.lu"
+  }
+}

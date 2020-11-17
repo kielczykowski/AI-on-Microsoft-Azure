@@ -1,0 +1,7 @@
+[import](common.lg)
+
+# TextInput_Prompt_q8dcut()
+[Activity   
+    Text = And last but not least, are You aware of meeting someone with covid infection?
+    SuggestedActions = Yes  | No
+    ]

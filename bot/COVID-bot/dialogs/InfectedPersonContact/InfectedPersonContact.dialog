@@ -1,0 +1,84 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "SVuLxG",
+    "name": "InfectedPersonContact",
+    "description": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "kbBGHY"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.TextInput",
+          "$designer": {
+            "id": "q8dcut"
+          },
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": true,
+          "allowInterruptions": false,
+          "prompt": "${TextInput_Prompt_q8dcut()}",
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "property": "user.metInfected"
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "T9BhpJ"
+          },
+          "condition": "user.metInfected == \"Yes\"",
+          "actions": [
+            {
+              "$kind": "Microsoft.SetProperty",
+              "$designer": {
+                "id": "eVpW2I"
+              },
+              "property": "user.symptoms_counter",
+              "value": "= user.symptoms_counter +1"
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "ZhuiRq"
+          },
+          "activityProcessed": true,
+          "dialog": "HealthResearchSummary"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "nVzfoo",
+        "name": "Exit"
+      },
+      "intent": "Exit",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "BMZux7"
+          },
+          "activityProcessed": true,
+          "dialog": "Goodbye"
+        }
+      ],
+      "condition": "#Exit.Score > 0.7"
+    }
+  ],
+  "generator": "InfectedPersonContact.lg",
+  "recognizer": "InfectedPersonContact.lu.qna",
+  "id": "InfectedPersonContact"
+}

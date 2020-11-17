@@ -1,0 +1,66 @@
+{
+  "FAQ.en-us": {
+    "rootDialog": false,
+    "triggers": {
+      "": [
+        "Goodbye.en-us"
+      ],
+      "Exit": [
+        "Goodbye.en-us"
+      ]
+    }
+  },
+  "HealthResearch.en-us": {
+    "rootDialog": false,
+    "triggers": {
+      "": [
+        "Symptoms.en-us"
+      ],
+      "Mood": [
+        "Symptoms.en-us"
+      ],
+      "Exit": [
+        "Goodbye.en-us"
+      ]
+    }
+  },
+  "InfectedPersonContact.en-us": {
+    "rootDialog": false,
+    "triggers": {
+      "": [
+        "HealthResearchSummary.en-us"
+      ],
+      "Exit": [
+        "Goodbye.en-us"
+      ]
+    }
+  },
+  "MedicalInterviev.en-us": {
+    "rootDialog": false,
+    "triggers": {
+      "help": [
+        "HealthResearch.en-us"
+      ],
+      "haha": [
+        "FAQ.en-us"
+      ],
+      "Exit": [
+        "Goodbye.en-us"
+      ]
+    }
+  },
+  "Symptoms.en-us": {
+    "rootDialog": false,
+    "triggers": {
+      "": [
+        "InfectedPersonContact.en-us"
+      ],
+      "Symptoms": [
+        "InfectedPersonContact.en-us"
+      ],
+      "Exit": [
+        "Goodbye.en-us"
+      ]
+    }
+  }
+}

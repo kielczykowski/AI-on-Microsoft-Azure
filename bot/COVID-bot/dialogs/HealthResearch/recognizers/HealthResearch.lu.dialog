@@ -1,0 +1,8 @@
+{
+  "$kind": "Microsoft.MultiLanguageRecognizer",
+  "id": "LUIS_HealthResearch",
+  "recognizers": {
+    "en-us": "HealthResearch.en-us.lu",
+    "": "HealthResearch.en-us.lu"
+  }
+}

@@ -1,0 +1,7 @@
+[import](common.lg)
+
+# TextInput_Prompt_c2CXCD()
+[Activity   
+    Text = What can I help You with?
+    SuggestedActions = I wanna ask some questions  | I want to get help | Exit
+    ]

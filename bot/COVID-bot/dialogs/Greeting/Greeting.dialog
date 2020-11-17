@@ -1,0 +1,102 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "FVWIxd",
+    "name": "Start",
+    "description": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "Start Dialog",
+        "description": "",
+        "id": "pgA5Ev"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.TextInput",
+          "$designer": {
+            "id": "c2CXCD"
+          },
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${TextInput_Prompt_c2CXCD()}",
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "property": "$initialAction"
+        },
+        {
+          "$kind": "Microsoft.SwitchCondition",
+          "$designer": {
+            "id": "QwNGbR"
+          },
+          "condition": "$initialAction",
+          "cases": [
+            {
+              "value": "I want to get help",
+              "actions": [
+                {
+                  "$kind": "Microsoft.BeginDialog",
+                  "$designer": {
+                    "id": "lZTkuI"
+                  },
+                  "activityProcessed": true,
+                  "dialog": "MedicalInterviev"
+                },
+                {
+                  "$kind": "Microsoft.IfCondition",
+                  "$designer": {
+                    "id": "6K0GDi"
+                  },
+                  "condition": "user.askedQuestions == true",
+                  "actions": [],
+                  "elseActions": [
+                    {
+                      "$kind": "Microsoft.RepeatDialog",
+                      "$designer": {
+                        "id": "S0GF9Y"
+                      },
+                      "activityProcessed": true
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "value": "I wanna ask some questions",
+              "actions": [
+                {
+                  "$kind": "Microsoft.BeginDialog",
+                  "$designer": {
+                    "id": "Aia1wG"
+                  },
+                  "activityProcessed": true,
+                  "dialog": "FAQ"
+                },
+                {
+                  "$kind": "Microsoft.RepeatDialog",
+                  "$designer": {
+                    "id": "kxQpUJ"
+                  },
+                  "activityProcessed": true
+                }
+              ]
+            },
+            {
+              "value": "Exit"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "generator": "Greeting.lg",
+  "recognizer": "Greeting.lu.qna",
+  "id": "Greeting"
+}
