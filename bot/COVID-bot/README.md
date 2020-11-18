@@ -20,6 +20,10 @@ The two above can be highly combined and interspersed during almost every state 
 
 App is capable of stopping it's work at any time and bot's state after detection of 'exit' keyphrase as input.
 
+## QnA Maker database
+
+Database was filled with translated FAQ from official polish government sites [1](https://www.gov.pl/web/koronawirus/pytania-i-odpowiedzi) [2](https://pacjent.gov.pl/aktualnosc/podejrzewasz-ze-masz-koronawirusa).
+
 ## Bot Architecture
 
 Bot consists of multiple parts that can be extracted:
