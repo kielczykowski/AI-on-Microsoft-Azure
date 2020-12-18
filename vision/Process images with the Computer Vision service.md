@@ -26,4 +26,4 @@
 
     2. Tool pricing
 
-        ![Face API pricing](../resources/vision/lab2/ComputerVisionAPIPricing.png)
+        ![Computer Vision Service pricing](../resources/vision/lab2/ComputerVisionAPIPricing.png)
