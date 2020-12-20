@@ -7,9 +7,16 @@ import glob
 
 class UI:
   def __init__(self):
-    self.current_image = 1
+    self.current_image = 0
     self.file_list = []
     self.createUI()
+
+  # workaround to keep buttons in line
+  def __IButton(self, *args, **kwargs):
+    return sg.Col([[sg.Button(*args, **kwargs)]], pad=(0,0))
+
+  def updateVisiblePhotoCounter(self, text_element):
+    self.window[text_element].update(visible=True, value='Photo {}/{}'.format(self.current_image, len(self.file_list)))
 
   def createUI(self):
     self.input_images_column = [
@@ -18,7 +25,12 @@ class UI:
           sg.In(size=(25, 1), enable_events=True, key="InputImagesFolder"),
           sg.FolderBrowse()
         ],
-        [sg.Image(key="InputImages")]
+        [sg.Image(key="InputImages")],
+        [
+          sg.Text('', key='InputPhoto.text', size=(20,1), font='Courier 10', visible=False),
+          self.__IButton('Previous Photo', key='InputPhoto.prev', visible=False),
+          self.__IButton('Next Photo', key='InputPhoto.next', visible=False)
+        ]
     ]
 
     self.output_images_column = [
@@ -37,8 +49,11 @@ class UI:
     self.window = sg.Window("MPD v 1.0", self.layout)
 
   def loop(self):
+    # if (self.window['InputImages'].get_size() == (None, None)):
+    #     print("YES")
     while True:
       event, values = self.window.read()
+
       if event == sg.WIN_CLOSED:
         break
       if event == 'InputImagesFolder':
@@ -48,19 +63,11 @@ class UI:
         if len(self.file_list) == 0:
           sg.popup_error('No input file with .jpg or .png extenstion found in directory')
         else:
-          # for i, elem in enumerate(self.file_list):
-          #   print(elem[-3:])
-          #   if elem[-3:] == 'jpg':
-          #     print(elem)
-          #     self.file_list[i] = elem[:-3] + 'gif'
-          #     print(elem)
-          print()
-          print(self.file_list)
-          print(self.file_list[self.current_image])
           img = ImageTk.PhotoImage(file=self.file_list[self.current_image])
-          # data = PhotoImage(file=self.file_list[self.current_image])
           self.window['InputImages'].update(data=img)
-
+          self.window['InputPhoto.prev'].update(visible=True)
+          self.window['InputPhoto.next'].update(visible=True)
+          self.updateVisiblePhotoCounter('InputPhoto.text')
     self.window.close()
 
 
