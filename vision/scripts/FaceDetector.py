@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFont
 import os
 import glob
 from msrest.authentication import CognitiveServicesCredentials
@@ -33,12 +33,22 @@ class ImagePresenter:
       img.show()
       input("Press Enter to continue...")
 
-  def drawROI(self, image, roi):
+  def getPILROI(self, roi_raw):
+    left, top = roi_raw.left, roi_raw.top
+    right, bottom = left + roi_raw.width, top + roi_raw.height
+    return (left, top, right, bottom)
+
+  def drawROI(self, image, roi, color = 'green'):
     draw = ImageDraw.Draw(image)
-    # for roi in rois:
     left, top = roi.left, roi.top
     right, bottom = left + roi.width, top + roi.height
-    draw.rectangle(((left,top), (right, bottom)), outline='red')
+    draw.rectangle(((left,top), (right, bottom)), outline=color)
+    return image
+
+  def drawTextOnImage(self, image, roi, text='', color='green'):
+    draw = ImageDraw.Draw(image)
+    left, top = roi.left, roi.top
+    draw.text((left, top), text, fill=color)
     return image
 
 

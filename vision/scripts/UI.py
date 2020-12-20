@@ -5,8 +5,11 @@ import screeninfo
 import sys
 from PIL import ImageTk, Image
 import os
+import io
 import glob
 from FaceDetector import FaceDetector, ImagePresenter
+from MaskClassifier import MaskClassifier
+import copy
 
 class UI:
   def __init__(self):
@@ -15,6 +18,7 @@ class UI:
     self.IMAGE_WIDTH = 640
     self.IMAGE_HEIGHT = 480
     self.face_detector = FaceDetector()
+    self.mask_classifier = MaskClassifier()
     self.image_presenter = ImagePresenter()
     self.createUI()
 
@@ -35,8 +39,35 @@ class UI:
       if not elem:
         raise RuntimeError('no face found in image, skipping')
       for e in elem:
-        image = self.image_presenter.drawROI(image, e.face_rectangle)
+        color = 'green'
+        tag = 'OK'
+        print(e.face_rectangle.additional_properties['detection'][0])
+        print(e.face_rectangle.additional_properties['detection'][0].tag_name)
+        if(e.face_rectangle.additional_properties['detection'][0].tag_name != 'GoodMaskPlacement'):
+          tag = str(e.face_rectangle.additional_properties['detection'][0].tag_name)\
+            + ' {:.2f} '.format(e.face_rectangle.additional_properties['detection'][0].probability * 100.0)\
+            + '%'
+          color = 'red'
+        image = self.image_presenter.drawROI(image, e.face_rectangle, color=color)
+        image = self.image_presenter.drawTextOnImage(image,e.face_rectangle, text = tag, color=color)
     return image
+
+  def analyzeROIs(self, features):
+    attributes = copy.deepcopy(features)
+    for i,elem in enumerate(features):
+      if not elem:
+        print('no face found in image, skipping')
+        continue
+      for j, e in enumerate(elem):
+        image = Image.open(self.file_list[self.current_image])
+        print(e.face_rectangle)
+        crop_image = image.crop(self.image_presenter.getPILROI(e.face_rectangle))
+        buf = io.BytesIO()
+        crop_image.save(buf, format='PNG')
+        byte_img = buf.getvalue()
+        result = self.mask_classifier.classify(byte_img)
+        attributes[i][j].face_rectangle.additional_properties = {'detection':result.predictions}
+    return attributes
 
   def updateInputImage(self, window_part, features = []):
     image = Image.open(self.file_list[self.current_image])
@@ -137,6 +168,7 @@ class UI:
       if event == 'InputPhoto.analyze':
         image = [open(self.file_list[self.current_image], 'r+b')]
         features = self.face_detector.detectFaceFeatures(image)
+        features = self.analyzeROIs(features)
         self.updateInputImage('OutputImages', features=features)
         # self.image_presenter
 
