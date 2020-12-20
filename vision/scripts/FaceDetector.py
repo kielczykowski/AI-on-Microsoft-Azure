@@ -8,8 +8,8 @@ from azure.cognitiveservices.vision.face import FaceClient
 
 class FaceDetector(FaceClient):
   def __init__(self):
-    SUBSCRIPTION_KEY = os.environ["COGNITIVE_SERVICE_KEY"]
-    ENDPOINT = os.environ["COGNITIVE_SERVICE_ENDPOINT"]
+    SUBSCRIPTION_KEY = os.environ["COGNITIVE_FACE_API_KEY"]
+    ENDPOINT = os.environ["COGNITIVE_FACE_API_ENDPOINT"]
     credential = CognitiveServicesCredentials(SUBSCRIPTION_KEY)
     super(FaceDetector, self).__init__(ENDPOINT, credential)
 
