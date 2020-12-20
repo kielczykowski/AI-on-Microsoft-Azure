@@ -6,6 +6,7 @@ import sys
 from PIL import ImageTk, Image
 import os
 import glob
+from FaceDetector import FaceDetector, ImagePresenter
 
 class UI:
   def __init__(self):
@@ -13,6 +14,8 @@ class UI:
     self.file_list = []
     self.IMAGE_WIDTH = 640
     self.IMAGE_HEIGHT = 480
+    self.face_detector = FaceDetector()
+    self.image_presenter = ImagePresenter()
     self.createUI()
 
   # workaround to keep buttons in line
@@ -27,11 +30,25 @@ class UI:
       return True
     return False
 
-  def updateInputImage(self):
+  def drawDetectionsOnPhoto(self, image, features):
+    for i,elem in enumerate(features):
+      if not elem:
+        raise RuntimeError('no face found in image, skipping')
+      for e in elem:
+        image = self.image_presenter.drawROI(image, e.face_rectangle)
+    return image
+
+  def updateInputImage(self, window_part, features = []):
     image = Image.open(self.file_list[self.current_image])
+    if len(features) != 0:
+      try:
+        image = self.drawDetectionsOnPhoto(image, features)
+      except RuntimeError as err:
+        sg.popup_error(err)
+        return
     image = image.resize((self.IMAGE_WIDTH, self.IMAGE_HEIGHT), Image.ANTIALIAS)
     image = ImageTk.PhotoImage(image)
-    self.window['InputImages'].update(data=image)
+    self.window[window_part].update(data=image)
 
   def createUI(self):
     self.input_images_column = [
@@ -44,7 +61,8 @@ class UI:
         [
           sg.Text('', key='InputPhoto.text', size=(20,1), font='Courier 10', visible=False),
           self.__IButton('Previous Photo', key='InputPhoto.prev', visible=False),
-          self.__IButton('Next Photo', key='InputPhoto.next', visible=False)
+          self.__IButton('Next Photo', key='InputPhoto.next', visible=False),
+          self.__IButton('Analyze Photo', key='InputPhoto.analyze', visible=False)
         ]
     ]
 
@@ -69,7 +87,7 @@ class UI:
     else:
       index =  int(sys.argv[1])
       monitor = screeninfo.get_monitors()[index]
-      loc = (monitor.x + (monitor.width / 3), monitor.height / 4)
+      loc = (monitor.x + (monitor.width / 3), monitor.y + monitor.height / 4)
 
     self.window = sg.Window("MPD v 1.0", self.layout, location=loc, size=size, font='Courier 10', element_justification='c')
 
@@ -89,9 +107,10 @@ class UI:
         if len(self.file_list) == 0:
           sg.popup_error('No input file with .jpg or .png extenstion found in directory')
         else:
-          self.updateInputImage()
+          self.updateInputImage('InputImages')
           self.window['InputPhoto.prev'].update(visible=True)
           self.window['InputPhoto.next'].update(visible=True)
+          self.window['InputPhoto.analyze'].update(visible=True)
           self.updateVisiblePhotoCounter()
 
       if event == 'InputPhoto.prev':
@@ -102,7 +121,7 @@ class UI:
             self.current_image = len(self.file_list) - 1
           else:
             self.current_image -= 1
-          self.updateInputImage()
+          self.updateInputImage('InputImages')
           self.updateVisiblePhotoCounter()
 
       if event == 'InputPhoto.next':
@@ -113,8 +132,13 @@ class UI:
             self.current_image = 0
           else:
             self.current_image += 1
-          self.updateInputImage()
+          self.updateInputImage('InputImages')
           self.updateVisiblePhotoCounter()
+      if event == 'InputPhoto.analyze':
+        image = [open(self.file_list[self.current_image], 'r+b')]
+        features = self.face_detector.detectFaceFeatures(image)
+        self.updateInputImage('OutputImages', features=features)
+        # self.image_presenter
 
 
     self.window.close()
