@@ -27,8 +27,6 @@ class ImagePresenter:
         continue
       img = Image.open(image_dirs[i])
       for e in elem:
-        print(len(elem))
-        print(e)
         image_presenter.drawROI(img, e.face_rectangle)
       img.show()
       input("Press Enter to continue...")

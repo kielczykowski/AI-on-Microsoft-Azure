@@ -41,8 +41,6 @@ class UI:
       for e in elem:
         color = 'green'
         tag = 'OK'
-        print(e.face_rectangle.additional_properties['detection'][0])
-        print(e.face_rectangle.additional_properties['detection'][0].tag_name)
         if(e.face_rectangle.additional_properties['detection'][0].tag_name != 'GoodMaskPlacement'):
           tag = str(e.face_rectangle.additional_properties['detection'][0].tag_name)\
             + ' {:.2f} '.format(e.face_rectangle.additional_properties['detection'][0].probability * 100.0)\
@@ -60,7 +58,6 @@ class UI:
         continue
       for j, e in enumerate(elem):
         image = Image.open(self.file_list[self.current_image])
-        print(e.face_rectangle)
         crop_image = image.crop(self.image_presenter.getPILROI(e.face_rectangle))
         buf = io.BytesIO()
         crop_image.save(buf, format='PNG')
@@ -123,8 +120,6 @@ class UI:
     self.window = sg.Window("MPD v 1.0", self.layout, location=loc, size=size, font='Courier 10', element_justification='c')
 
   def loop(self):
-    # if (self.window['InputImages'].get_size() == (None, None)):
-    #     print("YES")
     while True:
       event, values = self.window.read()
 
@@ -177,8 +172,5 @@ class UI:
 
 
 if __name__ == '__main__':
-
-  print(sys.argv)
-  print(screeninfo.get_monitors())
   ui = UI()
   ui.loop()

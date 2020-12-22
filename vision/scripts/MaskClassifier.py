@@ -24,16 +24,11 @@ class MaskClassifier(CustomVisionPredictionClient):
       self.ITERATION,
       image
     )
-    print(type(results.predictions))
-    for prediction in results.predictions:
-      print("\t" + prediction.tag_name +
-        ": {0:.2f}%".format(prediction.probability * 100))
     return results
 
 
 if __name__ == '__main__':
   image_dirs = glob.glob('./test/*.jpg')
-  print(image_dirs)
   # open all test images
   images = [open(dir, 'r+b') for dir in image_dirs]
 

@@ -24,9 +24,10 @@
 
 2. Use cases
 
-    * Unstructured data analysis
-    * Mobile ocr out of image applications
+    * Creating thumbnails for videos for blog
+    * Mobile ocr out of video applications
     * Mobile scanners for food product labels (for people with sight problems)
+    * Create descriptions of what can be seen on image for people with sight problems
 
 3. How to
     1. Tool usage
