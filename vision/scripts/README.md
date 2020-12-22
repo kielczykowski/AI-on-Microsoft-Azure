@@ -17,7 +17,7 @@ Project focuses on making the analysis of given photo and marks whether detected
 Application bases mainly on python using Azure Cognitive Services SDK and pysimplegui. Here is the list of used services:
 
 * Azure Face API - used to detect faces from given photo. For this purpose `detection_02` model is the most suitable since it has significantly improved face detection compared to previous version. Main drawback of this model is it doesn't support face attributes recognition such as nose eyes, eyebrows etc. which limits possibilities of conclusion making process.
-* Azure Custom Vision API - service based classifier. Used specifically to classify good or bad mask placement.
+* Azure Custom Vision API - service based classifier. Used specifically to classify good or bad mask placement. Model learnt with the following [dataset](https://github.com/cabani/MaskedFace-Net)
 
 ## Architecture
 
@@ -53,3 +53,12 @@ export COGNITIVE_CUSTOM_VISION_PREDICTOR_ENDPOINT=<endpoint>
 export COGNITIVE_CUSTOM_VISION_PROJECT_ID=<id>
 export COGNITIVE_CUSTOM_VISION_PROJECT_ITERATION=<name>
 ```
+
+### Shout-out
+
+To [Team](http://www.sciencedirect.com/science/article/pii/S2352648320300362) that created the dataset under free to use license.
+
+
+    Adnane Cabani, Karim Hammoudi, Halim Benhabiles, and Mahmoud Melkemi, "MaskedFace-Net - A dataset of correctly/incorrectly masked face images in the context of COVID-19", Smart Health, ISSN 2352-6483, Elsevier, 2020, DOI:10.1016/j.smhl.2020.100144
+
+
